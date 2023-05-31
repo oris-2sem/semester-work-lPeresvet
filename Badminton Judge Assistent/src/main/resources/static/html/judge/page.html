@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Управление игрой</title>
+
+    <link rel="icon" href="/images/icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/grid.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>Первая команда</h3>
+            <h4 id="warn1"></h4>
+            <div>
+                <label for="name-first1">Фамилия Имя</label>
+                <input id="name-first1" type="text" name="name-first1" placeholder="Введите данные">
+                <br>
+            </div>
+
+            <button id="create-team-button-1"
+                    type="button" class="btn btn-outline-primary"
+                    onclick="createTeamByOnePlayer(
+                    1,
+                    document.getElementById('name-first1').value
+                    )">
+                Применить
+            </button>
+        </div>
+        <div class="col">
+            <h3>Вторая команда</h3>
+            <h4 id="warn2"></h4>
+            <div>
+                <label for="name-second1">Фамилия Имя</label>
+                <input id="name-second1" type="text" name="name-second1" placeholder="Введите данные">
+                <br>
+            </div>
+
+            <button id="create-team-button-2"
+                    type="button" class="btn btn-outline-primary"
+                    onclick="createTeamByOnePlayer(
+                    2,
+                    document.getElementById('name-second1').value
+                    )">
+                Применить
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card col-6">
+            <div class="card-header">
+                <h3>Первая команда</h3>
+            </div>
+            <div class="card-body">
+                <div>
+                    <label for="team-first-name1">Фамилия Имя</label>
+                    <input id="team-first-name1" type="text" name="name-first1" placeholder="Введите данные">
+                    <br>
+                    <label for="team-first-name2">Фамилия Имя</label>
+                    <input id="team-first-name2" type="text" name="name-first1" placeholder="Введите данные">
+                    <br>
+                </div>
+                <button id="create-team-two-button-1"
+                        type="button" class="btn btn-outline-primary"
+                        onclick="createTeamByOnePlayer(
+                    1,
+                    document.getElementById('team-first-name1').value,
+                    document.getElementById('team-first-name2').value
+                    )">
+                    Применить
+                </button>
+            </div>
+        </div>
+        <div class=" col-6">
+            <div class="card-header">
+                <h3>Вторая команда</h3>
+            </div>
+            <div class="card-body">
+                <div>
+                    <label for="team-second-name1">Фамилия Имя</label>
+                    <input id="team-second-name1" type="text" name="name-first1" placeholder="Введите данные">
+                    <br>
+                    <label for="team-second-name2">Фамилия Имя</label>
+                    <input id="team-second-name2" type="text" name="name-first1" placeholder="Введите данные">
+                    <br>
+                </div>
+                <button id="create-team-two-button-2"
+                        type="button" class="btn btn-outline-primary"
+                        onclick="createTeamByOnePlayer(
+                    2,
+                    document.getElementById('team-second-name1').value,
+                    document.getElementById('team-second-name2').value
+                    )">
+                    Применить
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card col-6">
+            <div class="card-head">
+                <h3>Первая команда</h3>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="first-player-surname" class="form-label">Фамилия игрока, чью команду хотите найти</label>
+                    <input id="first-player-surname" type="text" name="surname"
+                           class="form-control" placeholder="Введите фамилию" onkeyup="search1()">
+                </div>
+                <div id="1-search-list" class="list-group"></div>
+            </div>
+        </div>
+        <div class="card col-6">
+            <div class="card-head">
+                <h3>Вторая команда</h3>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="second-player-surname" class="form-label">Фамилия игрока, чью команду хотите найти</label>
+                    <input id="second-player-surname" type="text" name="surname" class="form-control"
+                           placeholder="Введите фамилию" onkeyup="search2()">
+                </div>
+                <div id="2-search-list" class="list-group"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-data">
+        <h3>Данные игры</h3>
+        <h4 id="game-status"></h4>
+        <input type="hidden" id="game-id">
+        <input type="hidden" id="1-team-id" value="-1">
+        <input type="hidden" id="2-team-id" value="-1">
+        <label for="cort-id">Номер корта</label>
+        <input type="number" id="cort-id" placeholder="Номер корта">
+        <br>
+        <label for="init-turn">Номер команды, которая подаёт</label>
+        <input type="number" id="init-turn">
+        <button id="start-button" type="button" class="btn btn-outline-primary"
+                onclick="createStartedGame(
+                        document.getElementById('1-team-id').value,
+                        document.getElementById('2-team-id').value,
+                        document.getElementById('cort-id').value,
+                        document.getElementById('init-turn').value
+                    )">
+            Начать игру
+        </button>
+    </div>
+    <div>
+        <input type="hidden" id="current-score-id">
+        <h4>Текущий гейм</h4>
+        <table>
+            <tr>
+                <td>Счет первой команды</td>
+                <td id="first-team-score">0</td>
+                <td class="text-center">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button id="first-score-incr"
+                                type="button" class="btn btn-success"
+                                onclick="incrementScore(1)">+
+                        </button>
+                        <button id="first-score-decr"
+                                type="button" class="btn btn-danger"
+                                onclick="decrementScore(1)">-
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Счет второй команды</td>
+                <td id="second-team-score">0</td>
+                <td>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button id="second-score-incr"
+                                type="button" class="btn btn-success"
+                                onclick="incrementScore(2)">+
+                        </button>
+                        <button id="second-score-decr"
+                                type="button" class="btn btn-danger"
+                                onclick="decrementScore(2)">-
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+        <button id="new-game-button"
+                type="button" class="btn btn-outline-primary"
+                onclick="newScore()">Новый гейм
+        </button>
+    </div>
+</div>
+<script src="/index.js"></script>
+<script src="/js/judge-page/team.js"></script>
+<script src="/js/judge-page/game.js"></script>
+<script src="/js/admin/players.js"></script>
+<script src="/js/judge-page/score.js"></script>
+</body>
+</html>

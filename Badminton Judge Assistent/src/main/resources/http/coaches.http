@@ -1,0 +1,26 @@
+POST http://localhost/coaches
+Content-Type: application/json
+
+{
+  "name": "Назаров",
+  "surname": "Герман",
+  "patronymic": "Генадьевич"
+}
+
+###
+
+GET http://localhost/coaches/3
+
+###
+
+PUT http://localhost/coaches/1
+Content-Type: application/json
+
+{
+  "name": "Максим",
+  "surname": "Случаев",
+  "patronymic": "Константинович"
+}
+
+###
+DELETE http://localhost/coaches/1

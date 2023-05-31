@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="navigation">
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <th th:if="${isAdmin}">
+                <button type="button" class="btn btn-outline-primary"
+                        onclick="window.location.href = '/control/admin';">Страница админа</button>
+            </th>
+            <th th:if="${isAdminPage}">
+                <button type="button" class="btn btn-outline-primary"
+                        onclick="window.location.href = '/control/judge';">Страница судьи</button>
+            </th>
+            <button type="button" class="btn btn-outline-primary"
+                    onclick="window.location.href = '/exit';">Выход</button>
+        </div>
+    </div>
+</html>

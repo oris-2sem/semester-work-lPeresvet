@@ -1,0 +1,42 @@
+version: '3.3'
+
+services:
+  database:
+    image:
+      postgres
+    container_name: database_1
+#    networks:
+#      - cloud
+    ports:
+      - 5431:5432
+    environment:
+      - POSTGRES_USER=developer
+      - POSTGRES_PASSWORD=developer
+      - POSTGRES_DB=assistant_db
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+
+  application:
+    image:
+      app-image
+    container_name: app_1
+    ports:
+      - 80:8080
+    depends_on:
+      - database
+    environment:
+      - "SPRING_DATASOURCE_USERNAME=developer"
+      - "SPRING_DATASOURCE_PASSWORD=developer"
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/assistant_db"
+
+  adminka:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    depends_on:
+      - database
+volumes:
+  postgres_volume:
+    external: true
+

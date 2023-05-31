@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="player-games" class="card">
+    <div class="card-body" id="surname-search">
+        <div id="player-statistic-data">
+            <div class="mb-3">
+                <label for="statistic-player-surname" class="form-label">Фамилия игрока, чьи игры хотите посмотреть</label>
+                <input id="statistic-player-surname" type="text" name="surname"
+                       class="form-control" placeholder="Введите фамилию" onkeyup="search()">
+            </div>
+            <input type="hidden" id="search-player-id">
+            <div id="statistic-search-list" class="list-group"></div>
+        </div>
+        <button id="statistic-btn" class="btn btn-info" onclick="buildStatistic()">Найти статистику</button>
+        <button id="teammates-btn" class="btn btn-info" onclick="findTeammates()">Найти сокомандников</button>
+        <div>
+            <table id="statistic" class="table table-success table-striped">
+
+            </table>
+        </div>
+        <div id="teammates">
+
+        </div>
+    </div>
+    <script src="/js/statistic/search.js"></script>
+</div>
+</html>

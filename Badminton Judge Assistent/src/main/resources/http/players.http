@@ -1,0 +1,29 @@
+POST http://localhost/players
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzIiwicm9sZSI6IkpVREdFIiwiaXNzIjoiL2F1dGgvdG9rZW4iLCJleHAiOjE2ODE4NDE5NDN9.12GrkKRwYC1cezRXeKa0ElTJdTRAFwiRhryTya525xI
+
+{
+  "name": "Назаров",
+  "surname": "Владик"
+}
+
+###
+
+GET http://localhost/players/13
+
+###
+
+PUT http://localhost/players/13
+Content-Type: application/json
+
+{
+  "name": "Максим",
+  "surname": "Случаев",
+  "patronymic": "Константинович",
+  "age": 17,
+  "sex": "male",
+  "points": 1700
+}
+
+###
+DELETE http://localhost/players/14
