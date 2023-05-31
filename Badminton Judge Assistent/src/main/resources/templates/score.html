@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <link rel="icon" href="/images/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Счёт</title>
+</head>
+<body>
+<main>
+    <div class="container">
+        <th th:if="${scores != null}">
+            <h2 th:text="${'Вы наблюдаете за кортом ' + cort.number}"></h2>
+            <table class="table">
+                <tr class="table-info">
+
+                    <th>
+                        <th:block th:each="player : ${scores.firstTeam.players}">
+                            <p th:text="${player.surname + ' ' + player.name}"></p>
+                        </th:block>
+                    </th>
+
+                    <th th:if="${scores.turn == 1}">
+                        <img src="/images/icon.png" width="50" height="50">
+                    </th>
+                    <th th:unless="${scores.turn == 1}"></th>
+
+                    <th:block th:each="score : ${scores.scores}">
+                        <td class="text-center" th:text="${score.firstTeamPoints}"></td>
+                    </th:block>
+
+                </tr>
+                <tr class="table-info">
+                    <th>
+                        <th:block th:each="player : ${scores.secondTeam.players}">
+                            <p th:text="${player.surname + ' ' + player.name}"></p>
+                        </th:block>
+                    </th>
+
+                    <th th:if="${scores.turn == 2}">
+                        <img src="/images/icon.png" width="50" height="50">
+                    </th>
+                    <th th:unless="${scores.turn == 2}"></th>
+
+                    <th:block th:each="score : ${scores.scores}">
+                        <td class="text-center" th:text="${score.secondTeamPoints}"></td>
+                    </th:block>
+                </tr>
+
+            </table>
+        </th>
+        <th th:unless="${scores != null}">
+            <div class="py-3">
+                <h2 th:text="${'Активной игры на корте ' + cort.number + ' пока нет'}"
+                    class="text-center"></h2>
+                <div class="card">
+                    <div class="card-header">
+                        <h5>
+                            Войти на другой корт
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="/score/template?cortId=1">
+
+                            <div class="mb-3">
+                                <label for="cort-id-input" class="form-label">Номер корта</label>
+                                <input id="cort-id-input" class="form-control"
+                                       type="number" name="cortId" placeholder="Введите номер корта"
+                                       required>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary" type="submit">Смотреть за счётом</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </th>
+        <div th:replace="utils/statistic :: player-games"></div>
+    </div>
+</main>
+<div th:replace="utils/footer :: footer"></div>
+</body>
+</html>

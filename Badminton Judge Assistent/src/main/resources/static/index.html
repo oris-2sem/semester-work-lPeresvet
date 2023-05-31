@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/images/icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Ассистент судей приветсвует вас!</title>
+</head>
+<body>
+    <main>
+        <div class="container py-4 col-8">
+            <div class="card-group text-center">
+                <div class="card border-dark">
+                    <div class="card-header">
+                        <h5>
+                            Вход для админов и судей
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <form action="/html/forms/form.html">
+                                <button class="btn btn-primary">Войти</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-dark">
+                    <div class="card-header">
+                        <h5>
+                            Вход для болельщиков
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="/score/template?cortId=1">
+
+                            <div class="mb-3">
+                                <label for="cort-id-input" class="form-label">Номер корта</label>
+                                <input id="cort-id-input" class="form-control"
+                                       type="number" name="cortId" placeholder="Введите номер корта"
+                                       required>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary" type="submit">Смотреть за счётом</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="card border-dark">
+                    <div class="card-header">
+                        <h5>
+                            Правила, утвержденные федерацией бадминтона
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <form action="http://www.badm.ru/files/File/docs/2021/badminton_pravila_2021.pdf">
+                                <button class="btn btn-primary">Открыть</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
